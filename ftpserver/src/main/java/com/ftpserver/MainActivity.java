@@ -28,29 +28,22 @@ import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
 
-//    static {
-//        System.setProperty("java.net.preferIPv6Addresses", "false");
-//    }
+    static {
+        System.setProperty("java.net.preferIPv6Addresses", "false");
+    }
 
     @InjectView(R.id.textView2)
     TextView textView2;
 
     private FtpServer ftp;
-    private String ftpConfigDir = Environment.getExternalStorageDirectory()
-            .getAbsolutePath() + "/ftpConfig/";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
-//        File f = new File(ftpConfigDir);
-//        if (!f.exists())
-//            f.mkdir();
 
-
-//        copyResourceFile(R.raw.users, ftpConfigDir + "users.properties");
-//        copyResourceFile(R.raw.users, ftpConfigDir + "ftpserver.jks");
         String strIP;
         WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
         WifiInfo wifiInfo = wifiManager.getConnectionInfo();
@@ -60,35 +53,45 @@ public class MainActivity extends AppCompatActivity {
     }
 
     int pot = 2221;
-
+    String path = Environment.getExternalStorageDirectory() + File.separator + "FTP_TEST" + File.separator;
     private void startFtpServer() {
-        String path = Environment.getExternalStorageDirectory() + File.separator + "FTP_TEST" + File.separator;
+
         File file = new File(path);
         if (!file.isDirectory()) {
             file.mkdir();
         }
-        File file1 = new File(path + "ftpserver.properties");
-        if (!file1.exists()) {
-            try {
-                file1.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-
-
-        copyResourceFile(R.raw.users,path + "ftpserver.properties");
-
-
-
         FtpServerFactory fsf = new FtpServerFactory();
         ListenerFactory lf = new ListenerFactory();
-        PropertiesUserManagerFactory usermanagerfactory = new PropertiesUserManagerFactory();
-        usermanagerfactory.setFile(file1);
-        fsf.setUserManager(usermanagerfactory.createUserManager());
+
         lf.setPort(pot);
         fsf.addListener("default", lf.createListener());
+
+        //通过读取配置文件来配置ftp设置
+
+        copyResourceFile(R.raw.users, path + "ftpserver.properties");
+        PropertiesUserManagerFactory usermanagerfactory = new PropertiesUserManagerFactory();
+        usermanagerfactory.setFile(new File(path + "ftpserver.properties"));
+        fsf.setUserManager(usermanagerfactory.createUserManager());
+
+
+/*        //添加用户
+        BaseUser user = new BaseUser();
+        user.setName("test");
+        user.setPassword("123456");
+        user.setHomeDirectory("/mnt/sdcard");
+        List<Authority> authorities = new ArrayList<>();
+        authorities.add(new WritePermission());
+
+
+        user.setAuthorities(authorities);
+
+        try {
+            fsf.getUserManager().save(user);
+        } catch (FtpException e) {
+            e.printStackTrace();
+        }*/
+
+
         ftp = fsf.createServer();
         try {
             ftp.start();
@@ -96,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
         } catch (FtpException e) {
             e.printStackTrace();
         }
-
 
     }
 
@@ -160,4 +162,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
+
+
+
+
 }
