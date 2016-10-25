@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Wi-Fi File Transfer</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="inetadd">0.0.0.0:50000</string>
+    <string name="button_delete">删除</string>
+    <string name="button_toast">收到通知</string>
+    <string name="button_upload">上传</string>
+    <string name="button_download">下载</string>
+    <string name="button_rename">改名</string>
+    <string name="allow">允许:</string>
+    <string name="button_deauth">Deauth users</string>
+    <string name="notification_service_name">通知服务</string>
+
+</resources>

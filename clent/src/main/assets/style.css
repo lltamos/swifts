@@ -1,0 +1,161 @@
+body {
+    background-color: #35387B;
+}
+
+h1 {
+    border-radius: 12px;
+    background-clip: padding-box;
+    width: 95%;
+    padding: 10px;
+    background-color: #2A5671;
+}
+#bodyContainer {
+    width: 100%;
+    height: 100%;
+    background-color: #35387B;
+}
+#contentContainer {
+    width:95%;
+/*  background-clip: padding-box; */
+}
+#navigationContainer {
+    width:15%;
+    border-radius: 12px;
+    padding: 4px;
+    background-color: #8570A2;
+    vertical-align: top;
+}
+#directoryContainer {
+    border-radius:12px;
+    background-color: #EED99E;
+    width:85%;
+    padding: 4px;
+}
+#layoutButton {
+    float: right;
+    position: relative;
+    bottom: 30px;
+}
+
+/* list sort styling */
+div.list {
+    border: 1px solid black;
+    background-color: #EED99E;
+}
+div.dir.list {
+    background-color: #B1923C;
+}
+div.list img, div.list input {
+    margin-left: 1px;
+    height:1em;width:1em;
+    cursor: pointer;
+    border: 1px solid black;
+}
+div.file.list>form, #iconpopup>form {
+    display: inline;
+}
+div.file.list span.info {
+    float:right;
+    width:15%;
+    text-align:right
+}
+
+div.icon {
+    width: 90px;
+    height:90px;
+    display:inline-block; /* not supported in a very few browsers */
+    margin: 4px 4px 0 0;
+    padding: 5px;
+    float: left;
+    background-image: url("wf_images/unknownIcon.png");
+}
+div.icon.dir {
+    background-image: url("wf_images/folderIcon.png");
+}
+/* Format-specific icon images */
+/* Images */
+div.icon.file[name$=".jpg"],
+div.icon.file[name$=".jpeg"],
+div.icon.file[name$=".png"],
+div.icon.file[name$=".bmp"],
+div.icon.file[name$=".gif"] {
+	background-image: url("wf_images/imageIcon.png");
+}
+/* text files */
+div.icon.file[name$=".txt"],
+div.icon.file[name$=".log"] {
+    background-image: url("wf_images/textIcon.png");
+}
+/* web files */
+div.icon.file[name$=".html"],
+div.icon.file[name$=".css"],
+div.icon.file[name$=".php"] {
+    background-image: url("wf_images/htmlIcon.png");
+}
+/* word documents */
+div.icon.file[name$=".docx"],
+div.icon.file[name$=".doc"],
+div.icon.file[name$=".pdf"] {
+	background-image: url("wf_images/docIcon.png");
+}
+/* books */
+div.icon.file[name$=".epub"],
+div.icon.file[name$=".mobi"],
+div.icon.file[name$=".pdb"],
+div.icon.file[name$=".ibooks"],
+div.icon.file[name$=".lit"],
+div.icon.file[name$=".rtf"] {
+    background-image: url("wf_images/bookIcon.png");
+}
+/* audio */
+div.icon.file[name$=".au"],
+div.icon.file[name$=".wav"],
+div.icon.file[name$=".mp3"],
+div.icon.file[name$=".tta"],
+div.icon.file[name$=".flac"] {
+    background-image: url("wf_images/audioIcon.png");
+}
+/* video */
+div.icon.file[name$=".mp4"],
+div.icon.file[name$=".avi"],
+div.icon.file[name$=".mkv"],
+div.icon.file[name$=".wmv"],
+div.icon.file[name$=".m4v"],
+div.icon.file[name$=".webm"] {
+    background-image: url("wf_images/videoIcon.png");
+}
+/* executable */
+div.icon.file[name$=".exe"],
+div.icon.file[name$=".bat"],
+div.icon.file[name$=".sh"] {
+    background-image: url("wf_images/exeIcon.png");
+}
+
+
+div.icon img, div.icon input, div.file.icon>form, div.file.icon span.info {
+    display: none;
+}
+
+#iconpopup {
+    position: absolute;
+    padding: 4px;
+    background-color: 8570A2;
+}
+
+
+#tableHead {
+    cursor: pointer;
+    border: 1px solid black;
+    background-color: #FFF4D5;
+}
+#sortByNameSpan {
+    width: 70%
+}
+#sortByDateSpan {
+    float:right;
+    width: 15%
+}
+#sortBySizeSpan {
+    float:right;
+    width: 15%
+}
